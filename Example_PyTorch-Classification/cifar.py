@@ -21,7 +21,7 @@ import torchvision.datasets as datasets
 import models.cifar as models
 
 from utils import Bar, Logger, AverageMeter, accuracy, mkdir_p, savefig
-
+from torch.utils.tensorboard import SummaryWriter
 
 model_names = sorted(name for name in models.__dict__
     if name.islower() and not name.startswith("__")
@@ -87,6 +87,9 @@ assert args.dataset == 'cifar10' or args.dataset == 'cifar100', 'Dataset can onl
 # Use CUDA
 os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
 use_cuda = torch.cuda.is_available()
+
+# Initialize logger
+writer = SummaryWriter()
 
 # Random seed
 if args.manualSeed is None:
@@ -209,7 +212,10 @@ def main():
 
         # append logger file
         logger.append([state['lr'], train_loss, test_loss, train_acc, test_acc])
-
+	writer.add_scalar('Loss/train', train_loss, epoch)
+	writer.add_scalar('Accuracy/train', train_acc, epoch)
+	writer.add_scalar('Loss/test', test_loss, epoch)
+	writer.add_scalar('Accuracy/train', test_acc, epoch)
         # save model
         is_best = test_acc > best_acc
         best_acc = max(test_acc, best_acc)
