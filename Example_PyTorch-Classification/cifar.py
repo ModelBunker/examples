@@ -212,10 +212,10 @@ def main():
 
         # append logger file
         logger.append([state['lr'], train_loss, test_loss, train_acc, test_acc])
-	writer.add_scalar('Loss/train', train_loss, epoch)
-	writer.add_scalar('Accuracy/train', train_acc, epoch)
-	writer.add_scalar('Loss/test', test_loss, epoch)
-	writer.add_scalar('Accuracy/train', test_acc, epoch)
+        writer.add_scalar('Loss/train', train_loss, epoch)
+        writer.add_scalar('Accuracy/train', train_acc, epoch)
+        writer.add_scalar('Loss/test', test_loss, epoch)
+        writer.add_scalar('Accuracy/train', test_acc, epoch)
         # save model
         is_best = test_acc > best_acc
         best_acc = max(test_acc, best_acc)
