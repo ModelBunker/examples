@@ -112,7 +112,6 @@ venv.bak/
 tensorflow/
 example/test*
 *.pth*
-examples/imagenet/data/
 !examples/imagenet/data/README.md
 tmp
 tf_to_pytorch/pretrained_tensorflow

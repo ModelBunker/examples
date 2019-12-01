@@ -13,5 +13,5 @@ RUN pip3 install --upgrade pip
 RUN pip3 install torch==1.3.1 torchvision==0.4.2 matplotlib tensorboard==1.15.0 progress==1.5
 
 # Copy SSD code
-RUN git clone https://github.com/ModelBunker/examples Example_PyTorch-Classification
+RUN git clone https://github.com/ModelBunker/examples .
 
